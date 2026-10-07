@@ -43,15 +43,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const shouldStream = body.stream !== false;
+
     // Call server-side model adapter
     const upstreamResponse = await sendChatCompletion({
       messages: body.messages,
       temperature: body.temperature ?? 0.7,
       maxTokens: body.maxTokens ?? 2048,
-      stream: body.stream ?? true,
+      stream: shouldStream,
     });
 
-    if (body.stream && upstreamResponse.body) {
+    if (shouldStream && upstreamResponse.body) {
       return new Response(upstreamResponse.body, {
         status: 200,
         headers: {
