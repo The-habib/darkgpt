@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+Disallow: /chat
+Disallow: /settings
+Disallow: /api/
+
+Sitemap: https://darkgpt.vercel.app/sitemap.xml
